@@ -1,0 +1,13 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AddChartCard from '../components/AddChartCard';
+import Dashboard from '../components/Dashboard'
+
+---
+
+<Layout title="Dashboard">
+    <main class="grid grid-cols-4 gap-x-[30px] w-[1100px] mt-10 mx-auto gap-y-[30px] pb-40">
+        <Dashboard client:load/>
+        <AddChartCard client:visible></AddChartCard>
+    </main>
+</Layout>
