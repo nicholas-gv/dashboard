@@ -8,4 +8,5 @@ export type ChartType = typeof availableTypes[number];
 export interface CustomChart {
     chartData: ChartData
     chartType: ChartType
+    chartSize?: "medium" | "large"
 }
