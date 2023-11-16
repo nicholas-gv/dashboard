@@ -5,7 +5,7 @@ const Dashboard = () => {
     return (
         <>
             {charts.charts().map((el)=>
-                <ChartCard chartData={el.chartData} chartType={el.chartType}/>)
+                <ChartCard chartData={el.chartData} chartType={el.chartType} chartSize={el.chartSize}/>)
             }
         </>
     );

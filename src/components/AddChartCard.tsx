@@ -7,7 +7,8 @@ const AddChartCard = () => {
     const [showAPIInputElement, setShowAPIInputElement] = createSignal(false)
     let randomDataOptionRef: HTMLInputElement | undefined;
     let customDataOptionRef: HTMLInputElement | undefined;
-    let ChartTypeSelectRef: HTMLSelectElement | undefined;
+    let chartTypeSelectRef: HTMLSelectElement | undefined;
+    let chartSizeSelectRef: HTMLSelectElement | undefined;
 
     const handleClick = () => {
         if (!editVisible()) setEditModeAllowed(true)
@@ -25,8 +26,10 @@ const AddChartCard = () => {
 
     const handleSubmit = (e: Event) => {
         e.preventDefault()
-        if (randomDataOptionRef && randomDataOptionRef.checked && ChartTypeSelectRef) {
-            charts.addRandomChart(ChartTypeSelectRef.value as ("line" | "bar" | "doughnut"))
+        if (randomDataOptionRef && randomDataOptionRef.checked && chartTypeSelectRef && chartSizeSelectRef) {
+            charts.addRandomChart(
+                chartTypeSelectRef.value as ("line" | "bar" | "doughnut"),
+                chartSizeSelectRef.value as ("medium" | "large"))
         }
     }
 
@@ -60,12 +63,17 @@ const AddChartCard = () => {
                                 <label for="data-origin-random" class="text-white text-lg font-extrabold">Random</label>
                             </div>
                         </div>
-                            <select id="chartTypes" class="" ref={ChartTypeSelectRef}>
+                        <div class="col-span-2 row-span-2">
+                            <select id="chartTypes" class="col-span-2" ref={chartTypeSelectRef}>
                                 <option value="bar">Bar</option>
                                 <option value="doughnut">Doughnut</option>
                                 <option value="line">Line</option>
+                            </select>   
+                            <select id="chartSizes" class="col-span-2" ref={chartSizeSelectRef}>
+                                <option value="medium">Medium</option>
+                                <option value="large">Large</option>
                             </select>
-                        <div class="col-span-2"></div>
+                        </div>
                         {showAPIInputElement() && <input type="text" class="col-span-2" placeholder="Your API"></input>}
                         <button type="submit" class="bg-white p-3 rounded-md">Create Chart</button>
                         <button type="button" class="bg-white p-3 rounded-md" onClick={()=> setEditModeAllowed(false)}>Cancel</button>

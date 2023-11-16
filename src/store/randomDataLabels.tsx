@@ -8,12 +8,10 @@ export const chartLabels = [
         disallowedFor: ["doughnut"]
     },
     {
-        labels:['Q1', 'Q2', 'Q3', 'Q4']
+        labels:['Q1', 'Q2', 'Q3', 'Q4'],
     },
     {
-        labels:['Company 1', 'Company 2', 'Company 3', 'Company 4']
-    },
-    {
-        labels:['2019', '2020', '2021', '2022', '2023']
+        labels:['Company 1', 'Company 2', 'Company 3', 'Company 4', 'Company 5'], 
+        disallowedFor: ["line"]
     },
 ]

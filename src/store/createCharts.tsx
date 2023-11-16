@@ -34,7 +34,6 @@ function getChartBorderColor(numbersArray: Array<number>, chartType: ChartType) 
         return compareLastToFirst(numbersArray) ?  "rgb(34, 197, 94)" : "rgba(224, 97, 83)"
     }
 }
-// borderColor: "rgb(34, 197, 94)"
 
 function getAllowedLabels(chartType: ChartType) {
     const allowedLabels = [];
@@ -78,20 +77,24 @@ function getRandomChartType(): ChartType {
     return availableTypes[getRandomIndex(availableTypes.length)];
 }
 
-
-function getRandomChart(chosenChartType: ChartType): CustomChart {
+function getRandomChart(chosenChartType: ChartType, chartSize: "medium" | "large" = "medium"): CustomChart {
     const randomChartData = getRandomChartData(chosenChartType)
-    return {chartData: randomChartData, chartType: chosenChartType}
+    return {chartData: randomChartData, chartType: chosenChartType, chartSize: chartSize}
 }
 
-const defaultCharts: Array<CustomChart> = Array.from({ length: 7 }, () => getRandomChart(getRandomChartType()))
+const defaultCharts: Array<CustomChart> = Array.from(
+    { length: 8 },
+    (_:number, i:number) => i===0 ? 
+        getRandomChart(getRandomChartType(), "large") : getRandomChart(getRandomChartType()))
 
 function createCharts() {
-  const [charts, setCharts] = createSignal(defaultCharts);
-  const addChart = (chart: CustomChart) => setCharts([...charts(), chart])
-  const addRandomChart = (chosenChartType: ChartType) => setCharts([...charts(), getRandomChart(chosenChartType)])
-  const removeChart = (id: number) => setCharts(charts().filter((val, i) => i === id))
-  return { charts, addChart, addRandomChart, removeChart };
+    const [charts, setCharts] = createSignal(defaultCharts);
+    const addChart = (chart: CustomChart) => setCharts([...charts(), chart])
+    const addRandomChart = (chosenChartType: ChartType, chartSize: "medium" | "large") => {
+        setCharts([...charts(), getRandomChart(chosenChartType, chartSize)])
+    }
+    const removeChart = (id: number) => setCharts(charts().filter((val, i) => i === id))
+    return { charts, addChart, addRandomChart, removeChart };
 }
 
 export default createRoot(createCharts);
