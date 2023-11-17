@@ -5,7 +5,15 @@ import { type ChartOptions } from 'chart.js'
 import { type CustomChart } from '../types/customChart'
 
 
+const supportedChartComponents = {
+    "line": Line,
+    "bar": Bar,
+    "doughnut": Doughnut
+}
+
 const ChartCard = (props: CustomChart) => {
+    const ChartComponent = supportedChartComponents[props.chartType]
+
     const chartOptions: ChartOptions = {
         responsive: true,
         maintainAspectRatio: false,
@@ -36,11 +44,7 @@ const ChartCard = (props: CustomChart) => {
     return (
         <div class={`${chartSizeCSSContainers[props.chartSize]} bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow; flex items-center`}>
             <div class={`${chartSizeCSSInner[props.chartSize]} mx-auto`}>
-                {props.chartType === "line" ?
-                    <Line data={props.chartData} options={chartOptions} width={250} height={240} /> : 
-                    props.chartType === "bar" ? 
-                        <Bar data={props.chartData} options={chartOptions} width={250} height={240} /> : 
-                        <Doughnut data={props.chartData} options={chartOptions} width={250} height={240} />}
+                <ChartComponent data={props.chartData} options={chartOptions} width={250} height={240} /> 
             </div>
         </div>
     )
