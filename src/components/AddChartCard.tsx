@@ -29,7 +29,7 @@ const AddChartCard = () => {
         if (randomDataOptionRef && randomDataOptionRef.checked && chartTypeSelectRef && chartSizeSelectRef) {
             charts.addRandomChart(
                 chartTypeSelectRef.value as ("line" | "bar" | "doughnut"),
-                chartSizeSelectRef.value as ("medium" | "large"))
+                chartSizeSelectRef.value as ("1x1" | "1x2" | "2x2"))
         }
     }
 
@@ -70,8 +70,9 @@ const AddChartCard = () => {
                                 <option value="line">Line</option>
                             </select>   
                             <select id="chartSizes" class="col-span-2" ref={chartSizeSelectRef}>
-                                <option value="medium">Medium</option>
-                                <option value="large">Large</option>
+                                <option value="1x1">1x1</option>
+                                <option value="1x2">1x2</option>
+                                <option value="2x2">2x2</option>
                             </select>
                         </div>
                         {showAPIInputElement() && <input type="text" class="col-span-2" placeholder="Your API"></input>}

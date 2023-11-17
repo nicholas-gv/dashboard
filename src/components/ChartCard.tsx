@@ -12,6 +12,18 @@ const ChartCard = (props: CustomChart) => {
         devicePixelRatio: 2,
     }
 
+    const chartSizeCSSContainers = {
+        "1x1": "col-span-1 row-span-1 w-[250px] max-w-[250px] h-[230px]",
+        "1x2": "col-span-2 row-span-1 w-[530px] max-w-[530px] h-[230px]",
+        "2x2": "col-span-2 row-span-2 w-[530px] max-w-[530px] h-[490px]"
+    }
+    
+    const chartSizeCSSInner = {
+        "1x1": "max-w-[200px] max-h-[150px]",
+        "1x2": "max-w-[400px] max-h-[150px]",
+        "2x2": "max-w-[400px] max-h-[300px]"
+    }
+
     onMount(() => {
         if (props.chartType!=="doughnut") {
             chartOptions.scales = {x: { grid: {display: false}}}
@@ -22,8 +34,8 @@ const ChartCard = (props: CustomChart) => {
     })
 
     return (
-        <div class={`${props.chartSize==="large" ? "w-[530px] max-w-[530px] h-[490px] col-span-2 row-span-2" : " col-span-1 row-span-1 w-[250px] max-w-[250px] h-[230px]"} bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow; flex items-center`}>
-            <div class={`${props.chartSize==="large" ? "" : "max-w-[200px] max-h-[150px]"} mx-auto`}>
+        <div class={`${chartSizeCSSContainers[props.chartSize]} bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow; flex items-center`}>
+            <div class={`${chartSizeCSSInner[props.chartSize]} mx-auto`}>
                 {props.chartType === "line" ?
                     <Line data={props.chartData} options={chartOptions} width={250} height={240} /> : 
                     props.chartType === "bar" ? 

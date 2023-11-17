@@ -77,7 +77,7 @@ function getRandomChartType(): ChartType {
     return availableTypes[getRandomIndex(availableTypes.length)];
 }
 
-function getRandomChart(chosenChartType: ChartType, chartSize: "medium" | "large" = "medium"): CustomChart {
+function getRandomChart(chosenChartType: ChartType, chartSize: "1x1" | "1x2" | "2x2" = "1x1"): CustomChart {
     const randomChartData = getRandomChartData(chosenChartType)
     return {chartData: randomChartData, chartType: chosenChartType, chartSize: chartSize}
 }
@@ -85,12 +85,12 @@ function getRandomChart(chosenChartType: ChartType, chartSize: "medium" | "large
 const defaultCharts: Array<CustomChart> = Array.from(
     { length: 8 },
     (_:number, i:number) => i===0 ? 
-        getRandomChart(getRandomChartType(), "large") : getRandomChart(getRandomChartType()))
+        getRandomChart(getRandomChartType(), "2x2") : getRandomChart(getRandomChartType()))
 
 function createCharts() {
     const [charts, setCharts] = createSignal(defaultCharts);
     const addChart = (chart: CustomChart) => setCharts([...charts(), chart])
-    const addRandomChart = (chosenChartType: ChartType, chartSize: "medium" | "large") => {
+    const addRandomChart = (chosenChartType: ChartType, chartSize: "1x1" | "1x2" | "2x2") => {
         setCharts([...charts(), getRandomChart(chosenChartType, chartSize)])
     }
     const removeChart = (id: number) => setCharts(charts().filter((val, i) => i === id))
