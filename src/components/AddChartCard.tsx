@@ -1,5 +1,6 @@
 import { createSignal } from "solid-js";
 import charts from "../store/createCharts";
+import type { ChartSize, ChartType } from "../types/customChart";
 
 const AddChartCard = () => {
     const [editModeAllowed, setEditModeAllowed] = createSignal(false)
@@ -28,8 +29,8 @@ const AddChartCard = () => {
         e.preventDefault()
         if (randomDataOptionRef && randomDataOptionRef.checked && chartTypeSelectRef && chartSizeSelectRef) {
             charts.addRandomChart(
-                chartTypeSelectRef.value as ("line" | "bar" | "doughnut"),
-                chartSizeSelectRef.value as ("1x1" | "1x2" | "2x2"))
+                chartTypeSelectRef.value as ChartType,
+                chartSizeSelectRef.value as ChartSize)
         }
     }
 

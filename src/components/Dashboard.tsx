@@ -1,4 +1,5 @@
 import ChartCard from './ChartCard';
+import AddChartCard from './AddChartCard'
 import charts from '../store/createCharts';
 
 const Dashboard = () => {
@@ -7,6 +8,7 @@ const Dashboard = () => {
             {charts.charts().map((el)=>
                 <ChartCard chartData={el.chartData} chartType={el.chartType} chartSize={el.chartSize}/>)
             }
+            <AddChartCard/>
         </>
     );
 }

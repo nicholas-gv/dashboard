@@ -1,6 +1,6 @@
 import { createSignal, createRoot } from "solid-js";
 import { type ChartData, type ChartOptions } from "chart.js";
-import { type CustomChart, type ChartType, availableTypes } from "../types/customChart";
+import { type CustomChart, type ChartType, supportedTypes, type ChartSize } from "../types/customChart";
 import { chartLabels } from "./randomDataLabels";
 
 function getRandomIndex(max: number, min?: number): number {
@@ -16,21 +16,16 @@ function compareLastToFirst(array: Array<number>) {
 }
 
 function getChartBGColor(numbersArray: Array<number>, chartType: ChartType) {
-    if (chartType === "doughnut") {
-        return ["#020617", "#1e293b", "#475569", "#94a3b8", "#cbd5e1"]
-    } else if (chartType === "bar") {
-        return compareLastToFirst(numbersArray) ? "rgba(34, 197, 94)" : "rgba(224, 97, 83)"
-    } else if (chartType === "line") {
-        return compareLastToFirst(numbersArray) ? "rgba(34, 197, 94, 0.3)" : "rgba(224, 97, 83, 0.3)"
-    } else {
-        console.error("Error: Invalid ChartType")
+    const chartTypeBGColorMap = {
+        "doughnut": ["#020617", "#1e293b", "#475569", "#94a3b8", "#cbd5e1"],
+        "bar": compareLastToFirst(numbersArray) ? "rgba(34, 197, 94)" : "rgba(224, 97, 83)",
+        "line": compareLastToFirst(numbersArray) ? "rgba(34, 197, 94, 0.3)" : "rgba(224, 97, 83, 0.3)"
     }
+    return chartTypeBGColorMap[chartType]
 }
 
 function getChartBorderColor(numbersArray: Array<number>, chartType: ChartType) {
-    if (chartType === "doughnut") {
-        return 
-    } else {
+    if (chartType !== "doughnut") {
         return compareLastToFirst(numbersArray) ?  "rgb(34, 197, 94)" : "rgba(224, 97, 83)"
     }
 }
@@ -74,14 +69,15 @@ function getRandomChartData(chartType: ChartType): ChartData {
 }
 
 function getRandomChartType(): ChartType {
-    return availableTypes[getRandomIndex(availableTypes.length)];
+    return supportedTypes[getRandomIndex(supportedTypes.length)];
 }
 
-function getRandomChart(chosenChartType: ChartType, chartSize: "1x1" | "1x2" | "2x2" = "1x1"): CustomChart {
+function getRandomChart(chosenChartType: ChartType, chartSize: ChartSize = "1x1"): CustomChart {
     const randomChartData = getRandomChartData(chosenChartType)
     return {chartData: randomChartData, chartType: chosenChartType, chartSize: chartSize}
 }
 
+// default charts array where the first item is 2x2 and the rest 1x1
 const defaultCharts: Array<CustomChart> = Array.from(
     { length: 8 },
     (_:number, i:number) => i===0 ? 
@@ -90,7 +86,7 @@ const defaultCharts: Array<CustomChart> = Array.from(
 function createCharts() {
     const [charts, setCharts] = createSignal(defaultCharts);
     const addChart = (chart: CustomChart) => setCharts([...charts(), chart])
-    const addRandomChart = (chosenChartType: ChartType, chartSize: "1x1" | "1x2" | "2x2") => {
+    const addRandomChart = (chosenChartType: ChartType, chartSize: ChartSize) => {
         setCharts([...charts(), getRandomChart(chosenChartType, chartSize)])
     }
     const removeChart = (id: number) => setCharts(charts().filter((val, i) => i === id))

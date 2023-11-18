@@ -44,7 +44,7 @@ const ChartCard = (props: CustomChart) => {
     return (
         <div class={`${chartSizeCSSContainers[props.chartSize]} bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow; flex items-center`}>
             <div class={`${chartSizeCSSInner[props.chartSize]} mx-auto`}>
-                <ChartComponent data={props.chartData} options={chartOptions} width={250} height={240} /> 
+                <ChartComponent data={props.chartData} options={chartOptions} width={400} height={230} /> 
             </div>
         </div>
     )
