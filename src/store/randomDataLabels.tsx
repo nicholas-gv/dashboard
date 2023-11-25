@@ -8,10 +8,18 @@ export const chartLabels = [
         disallowedFor: ["doughnut"]
     },
     {
+        labels:['1970 - 1979', '1980 - 1989', '1990 - 1999', '2000 - 2009', '2010 - 2019'],
+        disallowedFor: ["doughnut", "line"]
+    },
+    {
         labels:['Q1', 'Q2', 'Q3', 'Q4'],
     },
     {
         labels:['Company 1', 'Company 2', 'Company 3', 'Company 4', 'Company 5'], 
-        disallowedFor: ["line"]
+        disallowedFor: ["bar", "line"]
+    },
+    {
+        labels:['Yes', 'No'], 
+        disallowedFor: ["bar","line"]
     },
 ]

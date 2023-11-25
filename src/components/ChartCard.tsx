@@ -37,8 +37,6 @@ const ChartCard = (props: CustomChart) => {
             chartOptions.scales = {x: { grid: {display: false}}}
         }
         Chart.register(Title, Tooltip, Legend, Colors, Filler)
-        console.log(props);
-        
     })
 
     return (

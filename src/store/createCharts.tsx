@@ -11,11 +11,11 @@ function getRandomIndex(max: number, min?: number): number {
     }
 }
 
-function compareLastToFirst(array: Array<number>) {
+function compareLastToFirst(array: Array<number>): boolean {
     return array[array.length-1] > array[0]
 }
 
-function getChartBGColor(numbersArray: Array<number>, chartType: ChartType) {
+function getChartBGColor(numbersArray: Array<number>, chartType: ChartType): string | string[] {
     const chartTypeBGColorMap = {
         "doughnut": ["#020617", "#1e293b", "#475569", "#94a3b8", "#cbd5e1"],
         "bar": compareLastToFirst(numbersArray) ? "rgba(34, 197, 94)" : "rgba(224, 97, 83)",
@@ -24,21 +24,14 @@ function getChartBGColor(numbersArray: Array<number>, chartType: ChartType) {
     return chartTypeBGColorMap[chartType]
 }
 
-function getChartBorderColor(numbersArray: Array<number>, chartType: ChartType) {
+function getChartBorderColor(numbersArray: Array<number>, chartType: ChartType): string | undefined {
     if (chartType !== "doughnut") {
         return compareLastToFirst(numbersArray) ?  "rgb(34, 197, 94)" : "rgba(224, 97, 83)"
     }
 }
 
 function getAllowedLabels(chartType: ChartType) {
-    const allowedLabels = [];
-
-    for (let i = 0; i < chartLabels.length; i++) {
-        if (!chartLabels[i].disallowedFor?.includes(chartType)) {
-            allowedLabels.push(chartLabels[i])
-        }
-    }
-    return allowedLabels;
+    return chartLabels.filter(label => !label.disallowedFor?.includes(chartType));
 }
 
 function getRandomChartData(chartType: ChartType): ChartData {
@@ -77,11 +70,14 @@ function getRandomChart(chosenChartType: ChartType, chartSize: ChartSize = "1x1"
     return {chartData: randomChartData, chartType: chosenChartType, chartSize: chartSize}
 }
 
-// default charts array where the first item is 2x2 and the rest 1x1
-const defaultCharts: Array<CustomChart> = Array.from(
-    { length: 8 },
-    (_:number, i:number) => i===0 ? 
-        getRandomChart(getRandomChartType(), "2x2") : getRandomChart(getRandomChartType()))
+const defaultCharts: Array<CustomChart> = [
+    getRandomChart(getRandomChartType(), "2x2"),
+    getRandomChart(getRandomChartType(), "1x1"),
+    getRandomChart(getRandomChartType(), "1x1"),
+    getRandomChart(getRandomChartType(), "1x2"),
+    getRandomChart(getRandomChartType(), "1x1"),
+    getRandomChart(getRandomChartType(), "1x1"),
+]
 
 function createCharts() {
     const [charts, setCharts] = createSignal(defaultCharts);
