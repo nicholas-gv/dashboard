@@ -1,5 +1,6 @@
 import { createSignal, createRoot } from "solid-js";
 import { type Section } from "../types/section";
+import charts from "./createCharts";
 
 
 const defaultSections = [

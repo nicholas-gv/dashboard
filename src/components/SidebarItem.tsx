@@ -19,7 +19,7 @@ const SidebarItem = (props: SidebarItemProps) => {
         <li class="flex flex-col" onClick={props.handleSidebarClick}>
             <SidebarHeader sidebarIcon={props.sidebarIcon} showSidebar={props.showSidebar} sidebarItemName={props.sidebarItemName}/>
             {props.showSidebar && 
-                <ul class="w-36 pl-8 mt-2">
+                <ul class="w-36 pl-7 [&>:first-child]:mt-2">
                     <For each={props.subItems}>
                         {(section)=> <SidebarSubItem>{section.name}</SidebarSubItem>}
                     </For>

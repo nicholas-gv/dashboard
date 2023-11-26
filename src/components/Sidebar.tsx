@@ -1,6 +1,7 @@
 import { createSignal } from "solid-js";
 import sectionsIcon from "../assets/sections-icon.png"
 import tutorialIcon from "../assets/question-mark-icon.png"
+import dashboardIcon from "../assets/dashboard-icon.png"
 import sections from "../store/createSections"
 import SidebarItem from "./SidebarItem";
 
@@ -15,7 +16,12 @@ const Sidebar = () => {
 
     return (
         <nav class={`${sectionOptionalCSS()} transition-all bg-slate-800 h-[100vh] fixed left-0 flex pl-1`}>
-            <ul class="[&>*]:mt-8 [&>*]:w-10 mt-8">
+            <ul class="[&>*]:mb-5 [&>*]:w-10 [&>:first-child]:mb-12 [&>:first-child]:mt-4">
+                <SidebarItem
+                    sidebarItemName="Dashboard"
+                    sidebarIcon={dashboardIcon}
+                    handleSidebarClick={handleSectionClick}
+                    showSidebar={showSections()}/>
                 <SidebarItem 
                     sidebarItemName="Sections"
                     sidebarIcon={sectionsIcon}
@@ -26,8 +32,7 @@ const Sidebar = () => {
                     sidebarItemName="Tutorial"
                     sidebarIcon={tutorialIcon}
                     handleSidebarClick={handleSectionClick}
-                    showSidebar={showSections()}
-                />
+                    showSidebar={showSections()}/>
             </ul>
         </nav>
     );
