@@ -2,18 +2,8 @@ import { createSignal, createRoot } from "solid-js";
 import { type ChartData, type ChartOptions } from "chart.js";
 import { type CustomChart, type ChartType, supportedTypes, type ChartSize } from "../types/customChart";
 import { chartLabels } from "./randomDataLabels";
+import { compareLastToFirst, getRandomIndex } from "./utils";
 
-function getRandomIndex(max: number, min?: number): number {
-    if (min) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    } else {
-        return Math.floor(Math.random() * max);
-    }
-}
-
-function compareLastToFirst(array: Array<number>): boolean {
-    return array[array.length-1] > array[0]
-}
 
 function getChartBGColor(numbersArray: Array<number>, chartType: ChartType): string | string[] {
     const chartTypeBGColorMap = {
@@ -65,28 +55,34 @@ function getRandomChartType(): ChartType {
     return supportedTypes[getRandomIndex(supportedTypes.length)];
 }
 
-function getRandomChart(chosenChartType: ChartType, chartSize: ChartSize = "1x1"): CustomChart {
+function getRandomChart(sectionID: number, chosenChartType: ChartType, chartSize: ChartSize = "1x1"): CustomChart {
     const randomChartData = getRandomChartData(chosenChartType)
-    return {chartData: randomChartData, chartType: chosenChartType, chartSize: chartSize}
+    return {sectionID, chartData: randomChartData, chartType: chosenChartType, chartSize}
 }
 
 const defaultCharts: Array<CustomChart> = [
-    getRandomChart(getRandomChartType(), "2x2"),
-    getRandomChart(getRandomChartType(), "1x1"),
-    getRandomChart(getRandomChartType(), "1x1"),
-    getRandomChart(getRandomChartType(), "1x2"),
-    getRandomChart(getRandomChartType(), "1x1"),
-    getRandomChart(getRandomChartType(), "1x1"),
+    getRandomChart(0, getRandomChartType(), "2x2"),
+    getRandomChart(0, getRandomChartType(), "1x1"),
+    getRandomChart(0, getRandomChartType(), "1x1"),
+    getRandomChart(0, getRandomChartType(), "1x2"),
+    getRandomChart(0, getRandomChartType(), "1x1"),
+    getRandomChart(0, getRandomChartType(), "1x1"),
+    getRandomChart(1, getRandomChartType(), "1x1"),
+    getRandomChart(1, getRandomChartType(), "2x2"),
+    getRandomChart(1, getRandomChartType(), "1x1"),
+    getRandomChart(1, getRandomChartType(), "1x1"),
+    getRandomChart(1, getRandomChartType(), "1x1"),
 ]
 
 function createCharts() {
     const [charts, setCharts] = createSignal(defaultCharts);
     const addChart = (chart: CustomChart) => setCharts([...charts(), chart])
-    const addRandomChart = (chosenChartType: ChartType, chartSize: ChartSize) => {
-        setCharts([...charts(), getRandomChart(chosenChartType, chartSize)])
+    const addRandomChart = (sectionID: number, chosenChartType: ChartType, chartSize: ChartSize) => {
+        setCharts([...charts(), getRandomChart(sectionID, chosenChartType, chartSize)])
     }
+    const getChartsBasedOnSection = (sectionID: number) => charts().filter((val, i) => val.sectionID === sectionID)
     const removeChart = (id: number) => setCharts(charts().filter((val, i) => i === id))
-    return { charts, addChart, addRandomChart, removeChart };
+    return { charts, addChart, addRandomChart, removeChart, getChartsBasedOnSection };
 }
 
 export default createRoot(createCharts);

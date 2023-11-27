@@ -2,8 +2,9 @@ import { onMount } from 'solid-js'
 import { Chart, Title, Tooltip, Legend, Colors, Filler } from 'chart.js'
 import { Line, Bar, Doughnut } from 'solid-chartjs'
 import { type ChartOptions } from 'chart.js'
-import { type CustomChart } from '../types/customChart'
-
+import { type ChartData } from 'chart.js'
+import { type ChartType } from '../types/customChart'
+import { type ChartSize } from '../types/customChart'
 
 const supportedChartComponents = {
     "line": Line,
@@ -11,7 +12,13 @@ const supportedChartComponents = {
     "doughnut": Doughnut
 }
 
-const ChartCard = (props: CustomChart) => {
+interface ChartCardProps {
+    chartData: ChartData
+    chartType: ChartType
+    chartSize: ChartSize
+}
+
+const ChartCard = (props: ChartCardProps) => {
     const ChartComponent = supportedChartComponents[props.chartType]
 
     const chartOptions: ChartOptions = {

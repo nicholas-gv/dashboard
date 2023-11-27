@@ -9,6 +9,7 @@ export type ChartType = typeof supportedTypes[number];
 export type ChartSize = typeof supportedChartDimensions[number]; 
 
 export interface CustomChart {
+    sectionID: number
     chartData: ChartData
     chartType: ChartType
     chartSize: ChartSize

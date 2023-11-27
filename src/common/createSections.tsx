@@ -1,7 +1,5 @@
 import { createSignal, createRoot } from "solid-js";
 import { type Section } from "../types/section";
-import charts from "./createCharts";
-
 
 const defaultSections = [
     {
@@ -12,17 +10,14 @@ const defaultSections = [
         id: 1,
         name: "Default 2"
     },
-    {
-        id: 2,
-        name: "Default 3"
-    }
 ]
 
 function createSections() {
+    const [activeSection, setActiveSection] = createSignal<number>(0);
     const [sections, setSections] = createSignal<Array<Section>>(defaultSections);
     const addSection = (section: Section) => setSections([...sections(), section])
     const removeSection = (id: number) => setSections(sections().filter((val, i) => i === id))
-    return { sections, addSection, removeSection };
+    return { sections, addSection, removeSection, activeSection, setActiveSection};
 }
 
 export default createRoot(createSections);

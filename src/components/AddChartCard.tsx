@@ -1,9 +1,10 @@
 import { createSignal } from "solid-js";
-import charts from "../store/createCharts";
+import charts from "../common/createCharts";
 import type { ChartSize, ChartType } from "../types/customChart";
 import chartIconPieSquare1x1 from "../assets/chart-logo-square-pie-1x1.png"
 import chartIconPieSquare1x2 from "../assets/chart-logo-dimensions-pie-1x2.png"
 import chartIconPieSquare2x2 from "../assets/chart-logo-pie-square-2x2.png"
+import sections from "../common/createSections"
 
 const AddChartCard = () => {
     const [editModeAllowed, setEditModeAllowed] = createSignal(false)
@@ -19,7 +20,7 @@ const AddChartCard = () => {
     const handleSubmit = (e: Event) => {
         e.preventDefault()
         if (chartTypeSelectRef) {
-            charts.addRandomChart(chartTypeSelectRef.value as ChartType, checkedChartDimension())
+            charts.addRandomChart(sections.activeSection(), chartTypeSelectRef.value as ChartType, checkedChartDimension())
         }
     }
 
