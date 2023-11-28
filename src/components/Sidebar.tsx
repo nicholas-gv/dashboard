@@ -1,18 +1,33 @@
 import { createSignal } from "solid-js";
 import sectionsIcon from "../assets/sections-icon.png"
-import tutorialIcon from "../assets/question-mark-icon.png"
+import tutorialIcon from "../assets/question-mark-icon-v2.png"
+import leftArrowIcon from "../assets/left-arrow.png"
 import dashboardIcon from "../assets/dashboard-icon.png"
 import sections from "../common/createSections"
 import SidebarItem from "./SidebarItem";
 import { type JSX } from "solid-js";
 
 const Sidebar = () => {
+    const minimalSidebarSize = "w-12"
+    const enlargedSidebarSize = "w-52"
+    const [isEnlarged, setIsEnlarged] = createSignal<boolean>(false);
     const [showSections, setShowSections] = createSignal<boolean>(false);
-    const [sectionOptionalCSS, setSectionOptionalCSS] = createSignal<string>("w-12");
+    const [sectionOptionalCSS, setSectionOptionalCSS] = createSignal<string>(minimalSidebarSize);
     
     const handleSectionClick: JSX.EventHandler<HTMLLIElement, MouseEvent> = () => {
-        setShowSections(!showSections());
-        setSectionOptionalCSS(showSections() ? "w-44" : "w-12");
+        if (!isEnlarged()) {
+            setShowSections(true);
+            setSectionOptionalCSS(enlargedSidebarSize);
+            setIsEnlarged(true)
+        }
+    }
+
+    const handleCollapseButtonClick: JSX.EventHandler<HTMLButtonElement, MouseEvent> = () => {
+        if (isEnlarged()) {
+            setShowSections(false);
+            setSectionOptionalCSS(minimalSidebarSize);
+            setIsEnlarged(false)
+        }
     }
 
     const handleSubItemClick: JSX.EventHandler<HTMLButtonElement, MouseEvent> = (e) => {
@@ -37,7 +52,8 @@ const Sidebar = () => {
                     subItems={sections.sections()} 
                     handleSidebarClick={handleSectionClick}
                     handleSubItemClick={handleSubItemClick}
-                    showSidebar={showSections()}/>
+                    showSidebar={showSections()}
+                    hasAddFunctionality={true}/>
                 <SidebarItem
                     sidebarItemName="Tutorial"
                     sidebarIcon={tutorialIcon}
@@ -45,6 +61,11 @@ const Sidebar = () => {
                     handleSubItemClick={handleSubItemClick}
                     showSidebar={showSections()}/>
             </ul>
+            {isEnlarged() && 
+                <button class="inline-flex translate-x-32 translate-y-5" onClick={handleCollapseButtonClick}>
+                    <img src={leftArrowIcon.src} alt="left-arrow-icon" width="25"/>
+                </button>
+            }
         </nav>
     );
 }

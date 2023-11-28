@@ -69,8 +69,10 @@ const AddChartCard = () => {
                             </div>
                         </div>
                         {showAPIInputElement() && <input type="text" class="col-span-2" placeholder="Your API"></input>}
-                        <button type="submit" class="bg-green-500 text-white font-bold font-sans p-3 rounded-md">Create Chart</button>
-                        <button type="button" class="bg-white p-3 rounded-md font-bold font-sans" onClick={()=> setEditModeAllowed(false)}>Cancel</button>
+                        <div class="col-span-2">
+                            <button type="submit" class="bg-green-500 text-white font-bold font-sans p-3 rounded-md mr-4">Create Chart</button>
+                            <button type="button" class="bg-white p-3 rounded-md font-bold font-sans" onClick={()=> setEditModeAllowed(false)}>Cancel</button>
+                        </div>
                     </form>
                     : 
                     <>
