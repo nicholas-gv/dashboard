@@ -82,7 +82,8 @@ function createCharts() {
     }
     const getChartsBasedOnSection = (sectionID: number) => charts().filter((val, i) => val.sectionID === sectionID)
     const removeChart = (id: number) => setCharts(charts().filter((val, i) => i === id))
-    return { charts, addChart, addRandomChart, removeChart, getChartsBasedOnSection };
+    const removeAllChartsBasedOnSectionID = (sectionID: number) => setCharts(charts().filter((val, i) => val.sectionID !== sectionID))
+    return { charts, addChart, addRandomChart, removeChart, getChartsBasedOnSection, removeAllChartsBasedOnSectionID };
 }
 
 export default createRoot(createCharts);

@@ -10,14 +10,19 @@ const defaultSections = [
         id: 1,
         name: "Default 2"
     },
+    {
+        id: 2,
+        name: "Default 3"
+    },
 ]
 
 function createSections() {
     const [activeSection, setActiveSection] = createSignal<number>(0);
     const [sections, setSections] = createSignal<Array<Section>>(defaultSections);
     const addSection = (section: Section) => setSections([...sections(), section])
-    const removeSection = (id: number) => setSections(sections().filter((val, i) => i === id))
-    return { sections, addSection, removeSection, activeSection, setActiveSection};
+    const removeSection = (id: number) => setSections(sections().filter((val, i) => val.id !== id))
+    const getSectionIDs = () => [...new Set(sections().map(section => section.id))];
+    return { sections, addSection, removeSection, activeSection, setActiveSection, getSectionIDs};
 }
 
 export default createRoot(createSections);

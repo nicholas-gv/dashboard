@@ -35,7 +35,7 @@ const SidebarItem = (props: SidebarItemProps) => {
             {props.showSidebar && 
                 <ul class="w-36 pl-7 [&>:first-child]:mt-2">
                     <For each={props.subItems}>{(section, i) => 
-                        <SidebarSubItem handleSubItemClick={props.handleSubItemClick} id={i()}>{section.name}</SidebarSubItem>}
+                        <SidebarSubItem handleSubItemClick={props.handleSubItemClick} id={sections.getSectionIDs()[i()]}>{section.name}</SidebarSubItem>}
                     </For>
                     {props.hasAddFunctionality && 
                         <li class="text-white text-sm font-sans font-semibold inline-flex items-center justify-center">
@@ -47,7 +47,7 @@ const SidebarItem = (props: SidebarItemProps) => {
                             <button 
                                 type="submit" 
                                 onClick={handlePlusInputSubmit} 
-                                class="font-sans text-2xl">+</button>
+                                class="font-sans text-2xl ml-1">+</button>
                         </li>
                     }
                 </ul>
