@@ -35,7 +35,7 @@ const SidebarItem = (props: SidebarItemProps) => {
             {props.showSidebar && 
                 <ul class="w-36 pl-7 [&>:first-child]:mt-2">
                     <For each={props.subItems}>{(section, i) => 
-                        <SidebarSubItem handleSubItemClick={props.handleSubItemClick} id={sections.getSectionIDs()[i()]}>{section.name}</SidebarSubItem>}
+                        <SidebarSubItem handleSubItemClick={props.handleSubItemClick} id={section.id}>{section.name}</SidebarSubItem>}
                     </For>
                     {props.hasAddFunctionality && 
                         <li class="text-white text-sm font-sans font-semibold inline-flex items-center justify-center">
