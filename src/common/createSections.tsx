@@ -10,10 +10,6 @@ const defaultSections = [
         id: 1,
         name: "Default 2"
     },
-    {
-        id: 2,
-        name: "Default 3"
-    },
 ]
 
 function createSections() {

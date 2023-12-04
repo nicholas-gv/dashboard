@@ -1,6 +1,6 @@
 import { type JSX } from "solid-js"
-import charts from "../common/createCharts"
-import sections from "../common/createSections"
+import charts from "../../common/createCharts"
+import sections from "../../common/createSections"
 
 interface SidebarSubItemProps {
     id: number 
@@ -21,7 +21,7 @@ const SidebarSubItem = (props: SidebarSubItemProps) => {
 
     return (
         <li class="text-white text-sm font-sans font-semibold inline-flex">
-            <button class="hover:bg-slate-700 w-32 text-left p-1 pl-4" onClick={props.handleSubItemClick} my-key={props.id}>
+            <button class="hover:bg-slate-700 w-44 text-left py-2 pl-4 rounded-md" onClick={props.handleSubItemClick} my-key={props.id}>
                 {props.children}
             </button>
             <button class="text-red-600 font-sans font-semibold ml-1" onClick={handleSubItemDeleteButton}>X</button>
