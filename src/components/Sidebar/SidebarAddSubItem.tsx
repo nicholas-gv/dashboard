@@ -5,12 +5,19 @@ const SidebarAddSubItem = () => {
 
     const handlePlusInputSubmit = () => {
         if (newSectionInputRef && newSectionInputRef.value.length!==0) {
+            const newID = (sections.sections().length===0) ? 
+                0 
+                : 
+                sections.sections()[sections.sections().length-1].id+1
+
+
             sections.addSection(
                 {
-                    id: sections.sections()[sections.sections().length-1].id+1, 
+                    id: newID, 
                     name: newSectionInputRef.value
                 })
             newSectionInputRef.value = ""
+            sections.setActiveSection(newID)
         }
     }
 
