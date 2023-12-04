@@ -21,7 +21,10 @@ const SidebarSubItem = (props: SidebarSubItemProps) => {
 
     return (
         <li class="text-white text-sm font-sans font-semibold inline-flex">
-            <button class="hover:bg-slate-700 w-44 text-left py-2 pl-4 rounded-md" onClick={props.handleSubItemClick} my-key={props.id}>
+            <button 
+                class={`${sections.activeSection()===props.id ? "bg-slate-700" : ""} hover:bg-slate-700 w-44 text-left mb-1 py-2 pl-4 rounded`} 
+                onClick={props.handleSubItemClick} 
+                my-key={props.id}>
                 {props.children}
             </button>
             <button class="text-red-600 font-sans font-semibold ml-1" onClick={handleSubItemDeleteButton}>X</button>

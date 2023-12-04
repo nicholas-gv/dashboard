@@ -19,7 +19,7 @@ const SidebarAddSubItem = () => {
             <input 
                 type="text" 
                 placeholder="Section Name..." 
-                class="rounded w-44 p-2 pl-4 text-xs mt-2 bg-slate-700 "
+                class="rounded w-44 p-2 pl-4 text-xs mt-2 bg-slate-900 "
                 ref={newSectionInputRef}/>
             <button 
                 type="submit" 
