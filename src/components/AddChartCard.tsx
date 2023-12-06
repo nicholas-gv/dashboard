@@ -4,6 +4,8 @@ import type { ChartSize, ChartType } from "../types/customChart";
 import chartIconPieSquare1x1 from "../assets/chart-logo-square-pie-1x1.png"
 import chartIconPieSquare1x2 from "../assets/chart-logo-dimensions-pie-1x2.png"
 import chartIconPieSquare2x2 from "../assets/chart-logo-pie-square-2x2.png"
+import chartBarIcon from "../assets/chart-logo-bar.png"
+import chartLineIcon from "../assets/chart-logo-line.png"
 import XIcon from "../assets/X-icon.png"
 import checkmarkIcon from "../assets/checkmark-green.png"
 import sections from "../common/createSections"
@@ -23,6 +25,7 @@ const AddChartCard = () => {
         e.preventDefault()
         if (chartTypeSelectRef) {
             charts.addRandomChart(sections.activeSection(), chartTypeSelectRef.value as ChartType, checkedChartDimension())
+            setEditModeAllowed(false)
         }
     }
 
@@ -31,7 +34,7 @@ const AddChartCard = () => {
          from-slate-700 via-gray-700 to-slate-500 bg-[length:300%] bg-[0%] hover:bg-[100%]">
             <button class="relative w-[250px] h-[230px] animate-easeIn" onClick={handleClick}>
                 {editModeAllowed() ? 
-                    <form action="" class="grid grid-cols-2 gap-2 max-w-[230px] mx-auto pt-4" onSubmit={handleSubmit}>
+                    <form action="" class="grid grid-cols-2 gap-2 max-w-[230px] mx-auto pt-4 animate-easeIn" onSubmit={handleSubmit}>
                         <span class="text-white font-sans font-semibold mb-[1px] text-left ml-3">Chart Type:</span>
                         <select id="chartTypes" class="col-span-2 font-sans w-[205px] justify-self-center" ref={chartTypeSelectRef}>
                             <option value="bar">Bar</option>

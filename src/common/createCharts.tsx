@@ -41,7 +41,7 @@ function getRandomChartData(chartType: ChartType): ChartData {
         labels: randomLabel.labels, 
         datasets: [
             {
-                label: 'Data', 
+                label: randomLabel.mainLabel, 
                 data: randomNumbersArray,
                 fill: true, 
                 borderColor: getChartBorderColor(randomNumbersArray, chartType),

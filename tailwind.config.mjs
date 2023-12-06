@@ -5,12 +5,12 @@ export default {
 		extend: {
 			keyframes: {
 				easeIn: {
-				  '0%': { transform: 'translateY(20px)' },
+				  '0%': { transform: 'translateY(10px)' },
 				  '100%': { transform: 'translateY(0px)' },
 				}
 			},
 			animation: {
-				easeIn: 'easeIn 200ms ease-in-out',
+				easeIn: 'easeIn 200ms ease-in',
 			},
 		},
 	},	

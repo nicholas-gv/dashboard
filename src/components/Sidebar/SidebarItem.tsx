@@ -21,7 +21,7 @@ const SidebarItem = (props: SidebarItemProps) => {
         <li class="flex flex-col" onClick={props.handleSidebarClick}>
             <SidebarHeader sidebarIcon={props.sidebarIcon} showSidebar={props.showSidebar} sidebarItemName={props.sidebarItemName}/>
             {props.showSidebar && 
-                <ul class="pl-7 [&>:first-child]:mt-2">
+                <ul class="pl-7 [&>:first-child]:mt-6 [&>:last-child]:mb-4">
                     <For each={props.subItems}>{(section, i) => 
                         <SidebarSubItem handleSubItemClick={props.handleSubItemClick} id={section.id}>{section.name}</SidebarSubItem>}
                     </For>
