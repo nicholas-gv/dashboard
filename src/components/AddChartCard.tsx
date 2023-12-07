@@ -4,8 +4,6 @@ import type { ChartSize, ChartType } from "../types/customChart";
 import chartIconPieSquare1x1 from "../assets/chart-logo-square-pie-1x1.png"
 import chartIconPieSquare1x2 from "../assets/chart-logo-dimensions-pie-1x2.png"
 import chartIconPieSquare2x2 from "../assets/chart-logo-pie-square-2x2.png"
-import chartBarIcon from "../assets/chart-logo-bar.png"
-import chartLineIcon from "../assets/chart-logo-line.png"
 import XIcon from "../assets/X-icon.png"
 import checkmarkIcon from "../assets/checkmark-green.png"
 import sections from "../common/createSections"
@@ -91,8 +89,8 @@ const AddChartCard = () => {
                     </form>
                     : 
                     <>
-                        <div class="bg-white w-[5%] h-[55%] rounded-md absolute top-[22.5%] left-[47.5%]"/>
-                        <div class="bg-white w-[55%] h-[5%] rounded-md absolute top-[47.5%] left-[22.5%]"/>
+                        <div class="bg-white w-[5%] h-[55%] rounded-md absolute top-[22.5%] left-[47.5%] animate-easeIn"/>
+                        <div class="bg-white w-[55%] h-[5%] rounded-md absolute top-[47.5%] left-[22.5%] animate-easeIn"/>
                     </>
                 }
                 

@@ -1,6 +1,7 @@
 import { type JSX } from "solid-js"
 import charts from "../../common/createCharts"
 import sections from "../../common/createSections"
+import XIcon from "../../assets/X-icon.png"
 
 interface SidebarSubItemProps {
     id: number 
@@ -20,14 +21,16 @@ const SidebarSubItem = (props: SidebarSubItemProps) => {
     }
 
     return (
-        <li class="text-white text-sm font-sans font-semibold inline-flex">
+        <li class="text-white text-sm font-sans font-semibold inline-flex items-center mb-1">
             <button 
-                class={`${sections.activeSection()===props.id ? "bg-slate-700" : ""} hover:bg-slate-700 w-44 text-left mb-1 py-2 pl-4 rounded`} 
+                class={`${sections.activeSection()===props.id ? "bg-slate-700" : ""} hover:bg-slate-700 w-44 text-left py-2 pl-4 rounded`} 
                 onClick={props.handleSubItemClick} 
                 my-key={props.id}>
                 {props.children}
             </button>
-            <button class="text-red-600 font-sans font-semibold ml-1" onClick={handleSubItemDeleteButton}>X</button>
+            <button class="text-red-600 font-sans font-semibold ml-2 w-3" onClick={handleSubItemDeleteButton}>
+                <img src={XIcon.src} alt="x-icon" width="12"/>
+            </button>
         </li>
     );
 }
