@@ -62,7 +62,7 @@ const Sidebar = () => {
                     showSidebar={showSections()}/>
             </ul>
             {sidebar.isEnlarged() && 
-                <button class="inline-flex translate-x-44 translate-y-5" onClick={handleCollapseButtonClick}>
+                <button class="inline-flex translate-x-44 translate-y-5 h-10" onClick={handleCollapseButtonClick}>
                     <img src={leftArrowIcon.src} alt="left-arrow-icon" width="25"/>
                 </button>
             }

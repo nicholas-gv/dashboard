@@ -11,6 +11,8 @@ interface SidebarSubItemProps {
 
 const SidebarSubItem = (props: SidebarSubItemProps) => {
     const handleSubItemDeleteButton = () => {
+        console.log("happen?");
+        
         try {
             charts.removeAllChartsBasedOnSectionID(props.id)
             sections.removeSection(props.id)
@@ -28,7 +30,7 @@ const SidebarSubItem = (props: SidebarSubItemProps) => {
                 my-key={props.id}>
                 {props.children}
             </button>
-            <button class="text-red-600 font-sans font-semibold ml-2 w-3" onClick={handleSubItemDeleteButton}>
+            <button class="text-red-600 font-sans font-semibold ml-2 w-10 h-8" onClick={handleSubItemDeleteButton}>
                 <img src={XIcon.src} alt="x-icon" width="12"/>
             </button>
         </li>

@@ -32,7 +32,7 @@ const SidebarAddSubItem = () => {
             <button 
                 type="submit" 
                 onClick={handlePlusInputSubmit} 
-                class="font-sans text-2xl flex items-center ml-2 w-3">
+                class="font-sans text-2xl flex items-center ml-2 w-10 h-8">
                 <img src={plusSign.src} alt="plus-sign" width="12"/>
             </button>
         </li>
