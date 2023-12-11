@@ -1,6 +1,6 @@
 import { createSignal } from "solid-js";
 import sectionsIcon from "../../assets/sections-icon.png"
-import tutorialIcon from "../../assets/question-mark-icon-v2.png"
+import tutorialIcon from "../../assets/question-mark-icon.png"
 import leftArrowIcon from "../../assets/left-arrow.png"
 import dashboardIcon from "../../assets/dashboard-icon.png"
 import sections from "../../common/createSections"
