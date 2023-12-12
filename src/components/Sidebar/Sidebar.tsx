@@ -38,7 +38,7 @@ const Sidebar = () => {
     }
 
     return (
-        <nav class={`${sectionOptionalCSS()} transition-all bg-slate-800 h-[100vh] fixed left-0 flex pl-1`}>
+        <nav class={`${sectionOptionalCSS()} transition-all bg-slate-800 h-[100vh] fixed left-0 flex pl-1 z-10`}>
             <ul class="[&>*]:mb-4 [&>*]:w-10 [&>:first-child]:mb-12 [&>:first-child]:mt-4">
                 <SidebarItem
                     sidebarItemName="Dashboard"
